@@ -87,3 +87,7 @@ body {
   font-size: 20px;
   color: white;
 }
+#ac-btn,
+#c-btn {
+  background-color: rgb(179, 1, 1);
+}
