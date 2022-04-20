@@ -15,9 +15,42 @@ const substractBtn = document.getElementById(`substract-btn`);
 const multiplyBtn = document.getElementById(`multiply-btn`);
 const percentBtn = document.getElementById(`percent-btn`);
 const divideBtn = document.getElementById(`divide-btn`);
-const equalsBtn = document.getElementById(`equals=btn`);
+const equalsBtn = document.getElementById(`equals-btn`);
 const rootBtn = document.getElementById(`root-btn`);
 const dotBtn = document.getElementById(`dot-btn`);
 const addBtn = document.getElementById(`add-btn`);
 const acBtn = document.getElementById(`ac-btn`);
 const cBtn = document.getElementById(`c-btn`);
+
+let calculation = [];
+let savedNumber = [];
+let add;
+
+displayText = () => (text.textContent = calculation.join(``));
+
+btnPressed = (e) => {
+  if (calculation.length > 8) {
+    return;
+  }
+  if (!isNaN(e)) {
+    calculation.push(e);
+    displayText();
+  }
+};
+
+acBtn.onclick = () => {
+  calculation = [];
+  displayText();
+};
+btn1.onclick = () => btnPressed(1);
+btn2.onclick = () => btnPressed(2);
+btn3.onclick = () => btnPressed(3);
+btn4.onclick = () => btnPressed(4);
+btn5.onclick = () => btnPressed(5);
+btn6.onclick = () => btnPressed(6);
+btn7.onclick = () => btnPressed(7);
+btn8.onclick = () => btnPressed(8);
+btn9.onclick = () => btnPressed(9);
+btn0.onclick = () => btnPressed(0);
+addBtn.onclick = () => btnPressed(`+`);
+equalsBtn.onclick = () => btnPressed(`=`);

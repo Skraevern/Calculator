@@ -54,7 +54,8 @@ body {
   background-color: rgb(24, 119, 0);
   align-items: flex-end;
   border: 2px solid rgb(121, 121, 121);
-  width: 230px;
+  width: 246px;
+  height: 46px;
   align-items: center;
   justify-content: flex-end;
   margin-top: 10px;
