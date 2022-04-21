@@ -28,60 +28,73 @@ let strNumber = ``;
 let action = false;
 let sum = 0;
 
-clog = function () {
-  console.log(`
-  newNumber = ${newNumber}
-  savedNumber = ${savedNumber}
-  sum = ${sum}
-  strNumber =${strNumber}`);
+const calculator = {
+  displayValue: ``,
+  firstOperand: null,
+  waitingForSecondOperand: true,
+  operator: null,
+  calculate() {
+    if (this.operator === `+`) {
+      this.firstOperand += Number(this.displayValue);
+    }
+    if (this.operator === `-`) {
+      this.firstOperand -= Number(this.displayValue);
+    }
+    if (this.operator === `*`) {
+      this.firstOperand *= Number(this.displayValue);
+    }
+    if (this.operator === `/`) {
+      this.firstOperand /= Number(this.displayValue);
+    }
+    this.displayValue = this.firstOperand;
+  },
 };
-clog();
 
-displayText = (e) => (text.textContent = e);
+displayText = () => (text.textContent = calculator.displayValue);
 
 btnPressed = (e) => {
-  if (strNumber.length > 8 || (strNumber === `` && e === `0`)) {
+  if (strNumber.length > 8 || (calculator.displayValue === `` && e === `0`)) {
     return;
   }
+
   if (!isNaN(e)) {
-    strNumber += e;
-    displayText(strNumber);
-    newNumber = Number(strNumber);
-    clog();
+    calculator.displayValue += e;
+    displayText();
+    console.log(calculator);
   }
-
-  if ((e === `+` || e === `-` || e === `*` || e === `/`) && action === true) {
-    if (e === `+`) {
-      savedNumber += newNumber;
-    }
-    if (e === `-`) {
-      savedNumber -= newNumber;
-    }
-    if (e === `*`) {
-      savedNumber *= newNumber;
-    }
-    if (e === `/`) {
-      savedNumber /= newNumber;
-    }
-    displayText(savedNumber);
-    strNumber = ``;
-    newNumber = 0;
-  }
-
-  if ((e === `+` || e === `-` || e === `*` || e === `/`) && action === false) {
-    action = true;
-    savedNumber = Number(strNumber);
-    strNumber = ``;
+  if (
+    (e === `+` || e === `-` || e === `*` || e === `/`) &&
+    calculator.waitingForSecondOperand
+  ) {
+    calculator.firstOperand = Number(calculator.displayValue);
+    calculator.waitingForSecondOperand = false;
+    calculator.displayValue = ``;
     return;
+  }
+  if (
+    (e === `+` || e === `-` || e === `*` || e === `/`) &&
+    calculator.waitingForSecondOperand === false
+  ) {
+    calculator.calculate();
+    displayText();
+    calculator.operator = e;
+    calculator.displayValue = ``;
   }
 };
 
 acBtn.onclick = () => {
-  strNumber = ``;
-  savedNumber = 0;
-  displayText(strNumber);
-  action = false;
+  calculator.displayValue = ``;
+  calculator.firstOperand = null;
+  calculator.waitingForSecondOperand = true;
+  calculator.operator = null;
+  displayText();
 };
+cBtn.onClick = () => {
+  calculator.displayValue = 0;
+  displayText();
+  console.log(calculator);
+};
+
 btn1.onclick = () => btnPressed(`1`);
 btn2.onclick = () => btnPressed(`2`);
 btn3.onclick = () => btnPressed(`3`);
