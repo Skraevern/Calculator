@@ -22,11 +22,14 @@ const btn8 = document.getElementById(`btn-8`);
 const btn9 = document.getElementById(`btn-9`);
 const text = document.getElementById(`text`);
 
+let numberContainsDot = false;
+
 const calculator = {
   displayValue: ``,
   firstOperand: null,
   waitingForSecondOperand: true,
   operator: null,
+  numberContainsDot: false,
   calculate() {
     if (this.operator === `+`) {
       this.firstOperand += Number(this.displayValue);
@@ -47,18 +50,30 @@ const calculator = {
 displayText = () => (text.textContent = calculator.displayValue);
 
 btnPressed = (e) => {
+  if (calculator.displayValue === `0` && e === `.`) {
+    calculator.displayValue = `0.`;
+    console.log(calculator);
+    displayText();
+    return;
+  }
+
   // Prevents numbers user inputs overflowing.
   if (
     calculator.displayValue.length > 8 ||
-    (calculator.displayValue === `` && e === `0`)
+    (calculator.displayValue === `0` && e === `0`) ||
+    (e === `.` && calculator.numberContainsDot === true)
   ) {
     return;
   }
 
   // check if input is number. If it`s i number adds it to a string.
-  if (!isNaN(e)) {
+  if (!isNaN(e) || e === `.`) {
     calculator.displayValue += e;
     displayText();
+    console.log(calculator);
+    if (e === `.`) {
+      calculator.numberContainsDot = true;
+    }
   }
 
   // Stores first number in calculater object
@@ -69,6 +84,7 @@ btnPressed = (e) => {
     calculator.firstOperand = Number(calculator.displayValue);
     calculator.waitingForSecondOperand = false;
     calculator.displayValue = ``;
+    calculator.numberContainsDot = false;
   }
   // if calculator object has a stored number. Calculates.
   if (
@@ -84,10 +100,11 @@ btnPressed = (e) => {
 
 // Delete
 acBtn.onclick = () => {
-  calculator.displayValue = ``;
+  calculator.displayValue = `0`;
   calculator.firstOperand = null;
   calculator.waitingForSecondOperand = true;
   calculator.operator = null;
+  calculator.numberContainsDot = false;
   displayText();
 };
 btn1.onclick = () => btnPressed(`1`);
@@ -105,3 +122,4 @@ equalsBtn.onclick = () => btnPressed(`=`);
 divideBtn.onclick = () => btnPressed(`/`);
 multiplyBtn.onclick = () => btnPressed(`*`);
 subtractBtn.onclick = () => btnPressed(`-`);
+dotBtn.onclick = () => btnPressed(`.`);
