@@ -51,7 +51,16 @@ const calculator = {
   },
 };
 
-displayText = () => (text.textContent = calculator.displayValue);
+displayText = () => {
+  if (
+    calculator.displayValue.toString().length > 8 &&
+    calculator.firstOperand !== null
+  ) {
+    text.textContent = calculator.displayValue.toString().slice(0, 8) + `...`;
+  } else {
+    text.textContent = calculator.displayValue;
+  }
+};
 
 btnPressed = (e) => {
   if (calculator.displayValue === `` && e === `.`) {
