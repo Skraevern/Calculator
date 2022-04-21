@@ -43,7 +43,11 @@ const calculator = {
     if (this.operator === `/`) {
       this.firstOperand /= Number(this.displayValue);
     }
+
     this.displayValue = this.firstOperand;
+  },
+  calculateRoot() {
+    this.displayValue = Math.sqrt(this.firstOperand);
   },
 };
 
@@ -96,6 +100,11 @@ btnPressed = (e) => {
     calculator.operator = e;
     calculator.displayValue = ``;
   }
+  if (e === `root`) {
+    calculator.firstOperand = Number(calculator.displayValue);
+    calculator.calculateRoot();
+    displayText();
+  }
 };
 
 // Delete
@@ -112,7 +121,7 @@ cBtn.onclick = () => {
   calculator.displayValue = ``;
   displayText();
 };
-
+rootBtn.onclick = () => btnPressed(`root`);
 btn1.onclick = () => btnPressed(`1`);
 btn2.onclick = () => btnPressed(`2`);
 btn3.onclick = () => btnPressed(`3`);
