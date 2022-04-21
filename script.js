@@ -21,8 +21,11 @@ const btn7 = document.getElementById(`btn-7`);
 const btn8 = document.getElementById(`btn-8`);
 const btn9 = document.getElementById(`btn-9`);
 const text = document.getElementById(`text`);
-
-let numberContainsDot = false;
+const memBtn = document.getElementById(`mr-btn`);
+const memTxt = document.getElementById(`memory`);
+const mPlussBtn = document.getElementById(`m+-btn`);
+const mMinusBtn = document.getElementById(`m--btn`);
+const mcBtn = document.getElementById(`mc-btn`);
 
 const calculator = {
   displayValue: ``,
@@ -30,6 +33,7 @@ const calculator = {
   waitingForSecondOperand: true,
   operator: null,
   numberContainsDot: false,
+  memory: null,
   calculate() {
     if (this.operator === `+`) {
       this.firstOperand += Number(this.displayValue);
@@ -65,7 +69,6 @@ displayText = () => {
 btnPressed = (e) => {
   if (calculator.displayValue === `` && e === `.`) {
     calculator.displayValue = `0.`;
-    console.log(calculator);
     displayText();
     return;
   }
@@ -83,7 +86,6 @@ btnPressed = (e) => {
   if (!isNaN(e) || e === `.`) {
     calculator.displayValue += e;
     displayText();
-    console.log(calculator);
     if (e === `.`) {
       calculator.numberContainsDot = true;
     }
@@ -130,6 +132,36 @@ cBtn.onclick = () => {
   calculator.displayValue = ``;
   displayText();
 };
+mPlussBtn.onclick = () => {
+  if (calculator.memory === null) {
+    calculator.memory = Number(calculator.displayValue);
+    memTxt.textContent = `MEMORY`;
+  } else {
+    calculator.memory += Number(calculator.displayValue);
+  }
+};
+
+memBtn.onclick = () => {
+  if (calculator.memory === null) {
+    return;
+  } else {
+    calculator.displayValue = calculator.memory;
+    displayText();
+  }
+};
+mMinusBtn.onclick = () => {
+  if (calculator.memory === null) {
+    return;
+  } else {
+    calculator.memory -= Number(calculator.displayValue);
+  }
+};
+
+mcBtn.onclick = () => {
+  calculator.memory = null;
+  memTxt.textContent = ``;
+};
+
 rootBtn.onclick = () => btnPressed(`root`);
 btn1.onclick = () => btnPressed(`1`);
 btn2.onclick = () => btnPressed(`2`);

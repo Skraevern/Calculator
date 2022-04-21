@@ -10,7 +10,7 @@ body {
 }
 
 .container {
-  height: 390px;
+  height: 410px;
   width: 300px;
   background-color: lightgray;
   border-radius: 20px;
@@ -52,19 +52,29 @@ body {
   display: flex;
   flex: none;
   background-color: rgb(24, 119, 0);
-  align-items: flex-end;
+
   border: 2px solid rgb(121, 121, 121);
   width: 246px;
   height: 46px;
-  align-items: center;
+
   justify-content: flex-end;
   margin-top: 10px;
+  margin-bottom: 17px;
 }
-
+.memory-container {
+  position: absolute;
+  width: 246px;
+  height: 10px;
+}
+.memory {
+  font-size: 10px;
+  padding: 0px;
+  margin: 3px 0px 0px 100px;
+}
 .text {
   font-size: 32px;
   padding: 3px;
-  margin: 0px;
+  margin: 5px 0px 0px 0px;
   font-family: "Orbitron", sans-serif;
 }
 .btn-container {
@@ -86,6 +96,14 @@ body {
   height: 30px;
   background-color: rgb(110, 109, 109);
   font-size: 20px;
+  color: white;
+  border-radius: 6px;
+}
+.btn-top {
+  width: 48px;
+  height: 30px;
+  background-color: rgb(110, 109, 109);
+  font-size: 18px;
   color: white;
   border-radius: 6px;
 }
