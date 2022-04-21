@@ -50,7 +50,7 @@ const calculator = {
 displayText = () => (text.textContent = calculator.displayValue);
 
 btnPressed = (e) => {
-  if (calculator.displayValue === `0` && e === `.`) {
+  if (calculator.displayValue === `` && e === `.`) {
     calculator.displayValue = `0.`;
     console.log(calculator);
     displayText();
@@ -60,7 +60,7 @@ btnPressed = (e) => {
   // Prevents numbers user inputs overflowing.
   if (
     calculator.displayValue.length > 8 ||
-    (calculator.displayValue === `0` && e === `0`) ||
+    (calculator.displayValue === `` && e === `0`) ||
     (e === `.` && calculator.numberContainsDot === true)
   ) {
     return;
@@ -100,13 +100,19 @@ btnPressed = (e) => {
 
 // Delete
 acBtn.onclick = () => {
-  calculator.displayValue = `0`;
+  calculator.displayValue = ``;
   calculator.firstOperand = null;
   calculator.waitingForSecondOperand = true;
   calculator.operator = null;
   calculator.numberContainsDot = false;
   displayText();
 };
+
+cBtn.onclick = () => {
+  calculator.displayValue = ``;
+  displayText();
+};
+
 btn1.onclick = () => btnPressed(`1`);
 btn2.onclick = () => btnPressed(`2`);
 btn3.onclick = () => btnPressed(`3`);
@@ -117,9 +123,9 @@ btn7.onclick = () => btnPressed(`7`);
 btn8.onclick = () => btnPressed(`8`);
 btn9.onclick = () => btnPressed(`9`);
 btn0.onclick = () => btnPressed(`0`);
+dotBtn.onclick = () => btnPressed(`.`);
 addBtn.onclick = () => btnPressed(`+`);
 equalsBtn.onclick = () => btnPressed(`=`);
 divideBtn.onclick = () => btnPressed(`/`);
 multiplyBtn.onclick = () => btnPressed(`*`);
 subtractBtn.onclick = () => btnPressed(`-`);
-dotBtn.onclick = () => btnPressed(`.`);
