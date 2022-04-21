@@ -69,7 +69,7 @@ btnPressed = (e) => {
     calculator.firstOperand = Number(calculator.displayValue);
     calculator.waitingForSecondOperand = false;
     calculator.displayValue = ``;
-    return;
+    console.log(calculator);
   }
   if (
     (e === `+` || e === `-` || e === `*` || e === `/`) &&
@@ -79,6 +79,7 @@ btnPressed = (e) => {
     displayText();
     calculator.operator = e;
     calculator.displayValue = ``;
+    console.log(calculator);
   }
 };
 
@@ -88,13 +89,8 @@ acBtn.onclick = () => {
   calculator.waitingForSecondOperand = true;
   calculator.operator = null;
   displayText();
-};
-cBtn.onClick = () => {
-  calculator.displayValue = 0;
-  displayText();
   console.log(calculator);
 };
-
 btn1.onclick = () => btnPressed(`1`);
 btn2.onclick = () => btnPressed(`2`);
 btn3.onclick = () => btnPressed(`3`);
