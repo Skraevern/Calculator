@@ -1,16 +1,5 @@
 `use strict`;
 
-const text = document.getElementById(`text`);
-const btn0 = document.getElementById(`btn-0`);
-const btn1 = document.getElementById(`btn-1`);
-const btn2 = document.getElementById(`btn-2`);
-const btn3 = document.getElementById(`btn-3`);
-const btn4 = document.getElementById(`btn-4`);
-const btn5 = document.getElementById(`btn-5`);
-const btn6 = document.getElementById(`btn-6`);
-const btn7 = document.getElementById(`btn-7`);
-const btn8 = document.getElementById(`btn-8`);
-const btn9 = document.getElementById(`btn-9`);
 const subtractBtn = document.getElementById(`subtract-btn`);
 const multiplyBtn = document.getElementById(`multiply-btn`);
 const percentBtn = document.getElementById(`percent-btn`);
@@ -21,12 +10,17 @@ const dotBtn = document.getElementById(`dot-btn`);
 const addBtn = document.getElementById(`add-btn`);
 const acBtn = document.getElementById(`ac-btn`);
 const cBtn = document.getElementById(`c-btn`);
-
-let newNumber = 0;
-let savedNumber = 0;
-let strNumber = ``;
-let action = false;
-let sum = 0;
+const btn0 = document.getElementById(`btn-0`);
+const btn1 = document.getElementById(`btn-1`);
+const btn2 = document.getElementById(`btn-2`);
+const btn3 = document.getElementById(`btn-3`);
+const btn4 = document.getElementById(`btn-4`);
+const btn5 = document.getElementById(`btn-5`);
+const btn6 = document.getElementById(`btn-6`);
+const btn7 = document.getElementById(`btn-7`);
+const btn8 = document.getElementById(`btn-8`);
+const btn9 = document.getElementById(`btn-9`);
+const text = document.getElementById(`text`);
 
 const calculator = {
   displayValue: ``,
@@ -53,15 +47,21 @@ const calculator = {
 displayText = () => (text.textContent = calculator.displayValue);
 
 btnPressed = (e) => {
-  if (strNumber.length > 8 || (calculator.displayValue === `` && e === `0`)) {
+  // Prevents numbers user inputs overflowing.
+  if (
+    calculator.displayValue.length > 8 ||
+    (calculator.displayValue === `` && e === `0`)
+  ) {
     return;
   }
 
+  // check if input is number. If it`s i number adds it to a string.
   if (!isNaN(e)) {
     calculator.displayValue += e;
     displayText();
-    console.log(calculator);
   }
+
+  // Stores first number in calculater object
   if (
     (e === `+` || e === `-` || e === `*` || e === `/`) &&
     calculator.waitingForSecondOperand
@@ -69,27 +69,26 @@ btnPressed = (e) => {
     calculator.firstOperand = Number(calculator.displayValue);
     calculator.waitingForSecondOperand = false;
     calculator.displayValue = ``;
-    console.log(calculator);
   }
+  // if calculator object has a stored number. Calculates.
   if (
-    (e === `+` || e === `-` || e === `*` || e === `/`) &&
+    (e === `+` || e === `-` || e === `*` || e === `/` || e === `=`) &&
     calculator.waitingForSecondOperand === false
   ) {
     calculator.calculate();
     displayText();
     calculator.operator = e;
     calculator.displayValue = ``;
-    console.log(calculator);
   }
 };
 
+// Delete
 acBtn.onclick = () => {
   calculator.displayValue = ``;
   calculator.firstOperand = null;
   calculator.waitingForSecondOperand = true;
   calculator.operator = null;
   displayText();
-  console.log(calculator);
 };
 btn1.onclick = () => btnPressed(`1`);
 btn2.onclick = () => btnPressed(`2`);
