@@ -26,6 +26,7 @@ const memTxt = document.getElementById(`memory`);
 const mPlussBtn = document.getElementById(`m+-btn`);
 const mMinusBtn = document.getElementById(`m--btn`);
 const mcBtn = document.getElementById(`mc-btn`);
+const plussMinusBtn = document.getElementById(`plus/minus-btn`);
 
 const calculator = {
   displayValue: ``,
@@ -83,7 +84,7 @@ btnPressed = (e) => {
   }
 
   // check if input is number. If it`s i number adds it to a string.
-  if (!isNaN(e) || e === `0.`) {
+  if (!isNaN(e) || e === `.` || e === `0.`) {
     calculator.displayValue += e;
     displayText();
     if (e === `.`) {
@@ -162,6 +163,39 @@ mcBtn.onclick = () => {
   memTxt.textContent = ``;
 };
 
+plussMinusBtn.onclick = () => {
+  if (calculator.displayValue === `` || calculator.displayValue === `0.`) {
+    return;
+  }
+  calculator.displayValue =
+    Number(calculator.displayValue) - Number(calculator.displayValue) * 2;
+  displayText();
+};
+
+percentBtn.onclick = () => {
+  console.log(calculator);
+  if (calculator.displayValue === `` || calculator.displayValue === `0.`) {
+    return;
+  }
+  if (calculator.operator === null) {
+    calculator.displayValue = Number(calculator.displayValue) / 100;
+  }
+  if (calculator.operator === `*`) {
+    calculator.displayValue =
+      (Number(calculator.displayValue) * calculator.firstOperand) / 100;
+  }
+  if (calculator.operator === `+`) {
+    calculator.displayValue =
+      (Number(calculator.displayValue) * calculator.firstOperand) / 100 +
+      calculator.firstOperand;
+  }
+  if (calculator.operator === `-`) {
+    calculator.displayValue =
+      calculator.firstOperand -
+      (Number(calculator.displayValue) * calculator.firstOperand) / 100;
+  }
+  displayText();
+};
 rootBtn.onclick = () => btnPressed(`root`);
 btn1.onclick = () => btnPressed(`1`);
 btn2.onclick = () => btnPressed(`2`);
