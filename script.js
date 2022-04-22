@@ -83,7 +83,7 @@ btnPressed = (e) => {
   }
 
   // check if input is number. If it`s i number adds it to a string.
-  if (!isNaN(e) || e === `.`) {
+  if (!isNaN(e) || e === `0.`) {
     calculator.displayValue += e;
     displayText();
     if (e === `.`) {
