@@ -9,31 +9,31 @@ body {
   justify-content: center;
 }
 
-.container {
+.calculator-container {
   height: 410px;
   width: 300px;
   background-color: lightgray;
   border-radius: 20px;
   border: 1px solid darkgray;
 }
-.top-container {
+.calculator-top-container {
   display: flex;
 }
-.top-left-container {
+.calculator-top-left-container {
   display: flex;
   flex-direction: column;
   padding: 10px 80px 0px 15px;
   align-items: center;
 }
-.maker,
-.model {
+.calculator-maker,
+.calculator-model {
   padding: 3px;
   margin: 0;
 }
-.model {
+.calculator-model {
   font-size: 12px;
 }
-.charger-container {
+.calculator-charger-container {
   background-color: rgb(126, 44, 44);
   width: 130px;
   height: 30px;
@@ -42,13 +42,13 @@ body {
   padding: px;
   border: gray 1px solid;
 }
-.display-container {
+.calculator-display-container {
   display: flex;
   width: 300px;
   justify-content: center;
 }
 
-.display {
+.calculator-display {
   display: flex;
   flex: none;
   background-color: rgb(24, 119, 0);
@@ -61,23 +61,23 @@ body {
   margin-top: 10px;
   margin-bottom: 17px;
 }
-.memory-container {
+.calculator-memory-container {
   position: absolute;
   width: 246px;
   height: 10px;
 }
-.memory {
+.calculator-memory {
   font-size: 10px;
   padding: 0px;
   margin: 3px 0px 0px 100px;
 }
-.text {
+.calculator-text {
   font-size: 32px;
   padding: 3px;
   margin: 5px 0px 0px 0px;
   font-family: "Orbitron", sans-serif;
 }
-.btn-container {
+.calculator-btn-container {
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -85,13 +85,13 @@ body {
   width: 300px;
   height: 270px;
 }
-.btn-row {
+.calculator-btn-row {
   display: flex;
   width: 300px;
   justify-content: space-around;
   padding: 5px;
 }
-.btn {
+.calculator-btn {
   width: 60px;
   height: 30px;
   background-color: rgb(110, 109, 109);
@@ -99,7 +99,7 @@ body {
   color: white;
   border-radius: 6px;
 }
-.btn-top {
+.calculator-btn-top {
   width: 48px;
   height: 30px;
   background-color: rgb(110, 109, 109);
@@ -107,7 +107,7 @@ body {
   color: white;
   border-radius: 6px;
 }
-#ac-btn,
-#c-btn {
+#calculator-ac-btn,
+#calculator-c-btn {
   background-color: rgb(179, 1, 1);
 }
