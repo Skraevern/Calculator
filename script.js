@@ -1,5 +1,7 @@
 `use strict`;
 
+let styleLink = document.getElementById(`calculator-style`);
+const topDiv = document.querySelector(`.calculator-top-container`);
 const calculator = {
   displayValue: ``,
   firstOperand: null,
@@ -7,6 +9,9 @@ const calculator = {
   operator: null,
   numberContainsDot: false,
   memory: null,
+  newStyle: true,
+  calculationDisplayed: ``,
+  storedCalculationDisplayed: ``,
   //
   plussMinusBtn: document.getElementById(`calculator-plus/minus-btn`),
   subtractBtn: document.getElementById(`calculator-subtract-btn`),
@@ -68,19 +73,37 @@ const calculator = {
     this.operator = null;
     this.numberContainsDot = false;
     this.displayText();
+    if (this.newStyle === true) {
+      this.memTxt.textContent = ``;
+      this.this.storedCalculationDisplayed = ``;
+      this.calculationDisplayed = ``;
+    }
   },
   delete() {
     calculator.displayValue = ``;
     calculator.displayText();
+    if (this.newStyle === true) {
+      this.memTxt.textContent = this.storedCalculationDisplayed.slice(0, -1);
+      this.calculationDisplayed = this.memTxt.textContent;
+      this.storedCalculationDisplayed = ``;
+    }
   },
   calculateMemory(e) {
     if ((e === `-` || e === `memory-recall`) && this.memory === null) {
       return;
     }
+
     if (e === `+`) {
       if (this.memory === null) {
         this.memory = Number(this.displayValue);
-        this.memTxt.textContent = `MEMORY`;
+        if (this.newStyle === false) {
+          this.memTxt.textContent = `MEMORY`;
+        } else {
+          this.mPlussBtn.classList.add(`active-memory`);
+          this.mMinusBtn.classList.add(`active-memory`);
+          this.mcBtn.classList.add(`active-memory`);
+          this.memBtn.classList.add(`active-memory`);
+        }
       } else {
         this.memory += Number(this.displayValue);
       }
@@ -94,7 +117,14 @@ const calculator = {
     }
     if (e === `memory-clear`) {
       this.memory = null;
-      this.memTxt.textContent = ``;
+      if (this.newStyle === false) {
+        this.memTxt.textContent = ``;
+      } else {
+        this.mPlussBtn.classList.remove(`active-memory`);
+        this.mMinusBtn.classList.remove(`active-memory`);
+        this.mcBtn.classList.remove(`active-memory`);
+        this.memBtn.classList.remove(`active-memory`);
+      }
     }
   },
   plusMinus() {
@@ -133,6 +163,14 @@ const calculator = {
     if (this.displayValue === `` && e === `.`) {
       this.displayValue = `0.`;
       this.numberContainsDot = true;
+      return;
+    }
+    if (this.newStyle === true && e !== `=`) {
+      this.calculationDisplayed += e;
+      this.memTxt.textContent = this.calculationDisplayed;
+      if (e === `+` || e === `-` || e === `*` || e === `/`) {
+        this.storedCalculationDisplayed = this.calculationDisplayed;
+      }
     }
     // Prevents numbers user inputs overflowing.
     if (
@@ -204,4 +242,27 @@ const calculator = {
     this.memBtn.onclick = () => this.calculateMemory(`memory-recall`);
   },
 };
-window.onload = () => calculator.activateBtns();
+const oldCalculator = {
+  oldCalculatorBtn: document.getElementById(`old-style-calculator-btn`),
+  activateBtn() {
+    this.oldCalculatorBtn.onclick = () =>
+      styleLink.setAttribute(`href`, `old-style-calculator.css`);
+    calculator.newStyle = false;
+  },
+};
+const newCalculator = {
+  newCalculatorBtn: document.getElementById(`new-style-calculator-btn`),
+  topDiv: document.querySelector(`.calculator-top-container`),
+  activateBtn() {
+    this.newCalculatorBtn.onclick = () => {
+      styleLink.setAttribute(`href`, `new-style-calculator.css`);
+      calculator.newStyle = true;
+    };
+  },
+};
+
+window.onload = () => {
+  calculator.activateBtns();
+  oldCalculator.activateBtn();
+  newCalculator.activateBtn();
+};

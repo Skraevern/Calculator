@@ -4,11 +4,13 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <link id="calculator-style" rel="stylesheet" href="new-style-calculator.css" />
     <link href='https://fonts.googleapis.com/css?family=Orbitron' rel='stylesheet' type='text/css'>
     <title>Document</title>
   </head>
   <body>
+    <button id="old-style-calculator-btn">Old style calculator</button>
+    <button id="new-style-calculator-btn">New style calculator</button>
     <div class="calculator-container">
       <div class="calculator-top-container">
         <div class="calculator-top-left-container">
@@ -27,46 +29,47 @@
           </div>
      </div>
      <div class="calculator-btn-container">
-          <div class="calculator-btn-row">
+          <div class="calculator-btn-row-5-btn">
              <button class="calculator-btn-top" id="calculator-mc-btn">MC</button>
              <button class="calculator-btn-top" id="calculator-mr-btn">MR</button>
              <button class="calculator-btn-top" id="calculator-m--btn">M-</button>
              <button class="calculator-btn-top" id="calculator-m+-btn">M+</button>
              <button class="calculator-btn-top" id="calculator-plus/minus-btn">+/-</button>
          </div>
-         <div class="calculator-btn-row">
+         <div class="calculator-btn-row-4-btn">
+           <div class="calculator-btn-row">
              <button class="calculator-btn" id="calculator-ac-btn" >AC</button>
              <button class="calculator-btn" id="calculator-c-btn">C</button>
              <button class="calculator-btn" id="calculator-percent-btn">%</button>
              <button class="calculator-btn" id="calculator-root-btn">√</button>
-         </div>
-         <div class="calculator-btn-row">
-            <button class="calculator-btn" id="calculator-btn-7">7</button>
-            <button class="calculator-btn" id="calculator-btn-8">8</button>
-            <button class="calculator-btn" id="calculator-btn-9">9</button>
-            <button class="calculator-btn" id="calculator-divide-btn">÷</button>
+           </div>
+           <div class="calculator-btn-row">
+              <button class="calculator-btn" id="calculator-btn-7">7</button>
+              <button class="calculator-btn" id="calculator-btn-8">8</button>
+              <button class="calculator-btn" id="calculator-btn-9">9</button>
+              <button class="calculator-btn" id="calculator-divide-btn">÷</button>
+          </div>
+          <div class="calculator-btn-row">
+              <button class="calculator-btn" id="calculator-btn-4">4</button>
+              <button class="calculator-btn" id="calculator-btn-5">5</button>
+              <button class="calculator-btn" id="calculator-btn-6">6</button>
+              <button class="calculator-btn" id="calculator-multiply-btn">x</button> 
+          </div>
+          <div class="calculator-btn-row">
+              <button class="calculator-btn" id="calculator-btn-1">1</button>
+              <button class="calculator-btn" id="calculator-btn-2">2</button>
+              <button class="calculator-btn" id="calculator-btn-3">3</button>
+              <button class="calculator-btn" id="calculator-subtract-btn">-</button>
+          </div>
+          <div class="calculator-btn-row">
+              <button class="calculator-btn" id="calculator-btn-0">0</button>
+              <button class="calculator-btn" id="calculator-dot-btn">.</button>
+              <button class="calculator-btn" id="calculator-equals-btn">=</button>
+              <button class="calculator-btn" id="calculator-add-btn">+</button>
+          </div>
         </div>
-        <div class="calculator-btn-row">
-            <button class="calculator-btn" id="calculator-btn-4">4</button>
-            <button class="calculator-btn" id="calculator-btn-5">5</button>
-            <button class="calculator-btn" id="calculator-btn-6">6</button>
-            <button class="calculator-btn" id="calculator-multiply-btn">x</button> 
-        </div>
-        <div class="calculator-btn-row">
-            <button class="calculator-btn" id="calculator-btn-1">1</button>
-            <button class="calculator-btn" id="calculator-btn-2">2</button>
-            <button class="calculator-btn" id="calculator-btn-3">3</button>
-            <button class="calculator-btn" id="calculator-subtract-btn">-</button>
-        </div>
-        <div class="calculator-btn-row">
-            <button class="calculator-btn" id="calculator-btn-0">0</button>
-            <button class="calculator-btn" id="calculator-dot-btn">.</button>
-            <button class="calculator-btn" id="calculator-equals-btn">=</button>
-            <button class="calculator-btn" id="calculator-add-btn">+</button>
-        </div>
-     </div>
-    </div>
-    
+       </div>
+      </div>
   </body>
   <script src="./script.js"></script>
 </html>
